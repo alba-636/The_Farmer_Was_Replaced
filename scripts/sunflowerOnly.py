@@ -26,17 +26,16 @@ def goToPosition(x, y):
 while True:
   goToPosition(0, 0)
 
-  gatherable_count = 0
   for i in range(worldSize):
     for y in range(worldSize):
       if get_ground_type() != Grounds.Soil:
         till()
 
-      if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
-        plant(Entities.Pumpkin)
-
       if can_harvest():
-        gatherable_count += 1
+        harvest()
+
+      if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
+        plant(Entities.Sunflower)
 
       if get_water() < 0.2:
         use_item(Items.Water)
@@ -49,24 +48,3 @@ while True:
 
     if i != worldSize - 1:
       move(East)
-
-  if gatherable_count == worldSize * worldSize:
-    harvest()
-
-  # Sunflowers
-  positions = [[6, 0], [6, 1]]
-  for i in range(len(positions)):
-    goToPosition(positions[i][0], positions[i][1])
-    if get_ground_type() != Grounds.Soil:
-      till()
-    if can_harvest():
-      harvest()
-    if get_entity_type() == None or get_entity_type() != Entities.Sunflower:
-      plant(Entities.Sunflower)
-    if get_water() < 0.5:
-      use_item(Items.Water)
-
-      
-
-
-
