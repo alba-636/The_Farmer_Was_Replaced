@@ -1,27 +1,10 @@
 from __builtins__ import *
-
-clear()
-change_hat(Hats.Green_Hat)
+from common import *
 
 worldSize = 6
 
-def is_even(x):
-  return x % 2 == 0
-
-def goToPosition(x, y):
-  moveX = x - get_pos_x()
-  for _ in range(abs(moveX)):
-    if moveX > 0:
-      move(East)
-    else:
-      move(West)
-
-  moveY = y - get_pos_y()
-  for _ in range(abs(moveY)):
-    if moveY > 0:
-      move(North)
-    else:
-      move(South)
+helloWorld()
+clear()
 
 while True:
   goToPosition(0, 0)
@@ -42,7 +25,7 @@ while True:
         use_item(Items.Water)
 
       if y != worldSize - 1:
-        if is_even(i):
+        if isEven(i):
           move(North)
         else:
           move(South)
@@ -54,7 +37,7 @@ while True:
     harvest()
 
   # Sunflowers
-  positions = [[6, 0], [6, 1]]
+  positions = [[6, 0], [6, 1], [6, 2]]
   for i in range(len(positions)):
     goToPosition(positions[i][0], positions[i][1])
     if get_ground_type() != Grounds.Soil:
@@ -63,7 +46,7 @@ while True:
       harvest()
     if get_entity_type() == None or get_entity_type() != Entities.Sunflower:
       plant(Entities.Sunflower)
-    if get_water() < 0.5:
+    if get_water() < 0.9:
       use_item(Items.Water)
 
       

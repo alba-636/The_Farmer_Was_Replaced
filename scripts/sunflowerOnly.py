@@ -1,27 +1,9 @@
 from __builtins__ import *
-
-clear()
-change_hat(Hats.Green_Hat)
+from common import *
 
 worldSize = 6
 
-def is_even(x):
-  return x % 2 == 0
-
-def goToPosition(x, y):
-  moveX = x - get_pos_x()
-  for _ in range(abs(moveX)):
-    if moveX > 0:
-      move(East)
-    else:
-      move(West)
-
-  moveY = y - get_pos_y()
-  for _ in range(abs(moveY)):
-    if moveY > 0:
-      move(North)
-    else:
-      move(South)
+clear()
 
 while True:
   goToPosition(0, 0)
@@ -41,9 +23,9 @@ while True:
         use_item(Items.Water)
 
       if y != worldSize - 1:
-        if is_even(i):
+        if isEven(i):
           move(North)
-        else:
+      else:
           move(South)
 
     if i != worldSize - 1:

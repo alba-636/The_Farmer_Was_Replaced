@@ -1,14 +1,11 @@
 from __builtins__ import *
+from common import *
 
 clear()
-change_hat(Hats.Green_Hat)
 
 worldSize = get_world_size()
 global tail_length
 tail_length = 0
-
-def is_even(x):
-  return x % 2 == 0
 
 def custom_move(direction):
   if get_entity_type() == Entities.Apple:
@@ -29,7 +26,7 @@ while True:
     for y in range(square):
   
       if y != square - 1:
-        if is_even(i):
+        if isEven(i):
           custom_move(North)
         else:
           custom_move(South)

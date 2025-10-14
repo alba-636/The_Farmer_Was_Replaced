@@ -1,4 +1,5 @@
 from __builtins__ import *
+from common import *
 
 clear()
 
@@ -17,7 +18,7 @@ columsDisposition = [
   [CARROT, PUMPKIN, SUNFLOWER, CACTUS, GRASS, TREE],
 ]
 
-def is_even(x):
+def isEven(x):
   return x % 2 == 0
 
 def gatherPlantNone():
@@ -100,7 +101,7 @@ while True:
 
 
       if y != worldSize - 1:
-        if is_even(i):
+        if isEven(i):
           move(North)
         else:
           move(South)
@@ -109,5 +110,5 @@ while True:
       move(East)     
 
   move(East)
-  if not is_even(worldSize):
+  if not isEven(worldSize):
     move(North)

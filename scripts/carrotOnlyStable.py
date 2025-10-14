@@ -23,7 +23,7 @@ columsDisposition = [
   GRASS_TREE,
 ]
 
-def is_even(x):
+def isEven(x):
   return x % 2 == 0
 
 
@@ -52,7 +52,7 @@ for i in range(worldSize):
       till()
       plant(Entities.Carrot)
     if y != worldSize - 1:
-      if is_even(i):
+      if isEven(i):
         move(North)
       else:
         move(South)
@@ -61,7 +61,7 @@ for i in range(worldSize):
     move(East)
 
 move(East)
-if not is_even(worldSize):
+if not isEven(worldSize):
   move(North)
 
 
@@ -69,7 +69,7 @@ while True:
   for i in range(worldSize):
     for y in range(worldSize):
       if columsDisposition[i] == GRASS_TREE:
-        if is_even(y):
+        if isEven(y):
           gatherPlantTree()
         else:
           gatherPlantGrass()
@@ -78,14 +78,14 @@ while True:
         gatherPlantCarrot()
 
       if columsDisposition[i] == CARROT_TREE:
-        if is_even(y):
+        if isEven(y):
           gatherPlantTree()
         else:
           gatherPlantCarrot()
 
 
       if y != worldSize - 1:
-        if is_even(i):
+        if isEven(i):
           move(North)
         else:
           move(South)
@@ -94,5 +94,5 @@ while True:
       move(East)
 
   move(East)
-  if not is_even(worldSize):
+  if not isEven(worldSize):
     move(North)
