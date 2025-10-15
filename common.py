@@ -108,3 +108,12 @@ def rand(min, max):
 def sleep(seconds):
   for _ in range(seconds):
     do_a_flip()
+
+def buildStartingPositions(farmSize):
+  positions = []
+  max = get_world_size() // farmSize
+  for y in range(max):
+    for x in range(max):
+      positions.append([x * farmSize, y * farmSize])
+  return positions
+

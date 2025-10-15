@@ -2,6 +2,7 @@ from __builtins__ import *
 from common import *
 
 clear()
+change_hat(Hats.Purple_Hat)
 
 def spawnMaze(worldSize):
   if get_ground_type() != Grounds.Grassland:
@@ -89,31 +90,27 @@ def maze(x, y, worldSize, offsetX, offsetY):
     solveMazeRandom(x, y, worldSize, offsetX, offsetY)
 
 
-mazeSize = 10
+mazeSize = 5
 
-def drone2():
-  maze(15, 0, mazeSize, 10, 0)
-def drone3():
-  maze(25, 0, mazeSize, 20, 0)
-def drone4():
-  maze(0, 15, mazeSize, 0, 10)
-def drone5():
-  maze(15, 15, mazeSize, 10, 10)
-def drone6():
-  maze(25, 15, mazeSize, 20, 10)
-def drone7():
-  maze(0, 25, mazeSize, 0, 20)
-def drone8():
-  maze(15, 25, mazeSize, 10, 20)
+def drone():
+  x = get_pos_x()
+  y = get_pos_y()
+  offset = mazeSize // 2
+  offsetX = offset 
+  offsetY = offset 
+  if x == 0:
+    offsetX = 0
+  if y == 0:
+    offsetY = 0
+  maze(x + offsetX, y + offsetY, mazeSize, x, y)
 
-spawn_drone(drone2)
-spawn_drone(drone3)
-spawn_drone(drone4)
-spawn_drone(drone5)
-spawn_drone(drone6)
-spawn_drone(drone7)
-spawn_drone(drone8)
+staringPositions = buildStartingPositions(mazeSize)
 
-# set_execution_speed(1)
+for i in range(len(staringPositions)):
+  if i == 31:
+    continue
+  goToPosition(staringPositions[i][0], staringPositions[i][1])
+  spawn_drone(drone)
 
-maze(0, 0, mazeSize, 0, 0)
+# Manually put the main drone on the last available position.
+maze(7, 27, mazeSize, 5, 25)

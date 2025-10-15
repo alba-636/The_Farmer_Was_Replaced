@@ -1,6 +1,7 @@
 from __builtins__ import *
 from common import *
 
+helloWorld()
 clear()
 
 worldSize = get_world_size()
