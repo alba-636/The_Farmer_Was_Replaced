@@ -1,52 +1,50 @@
 from __builtins__ import *
 from common import *
 
-worldSize = 6
+farmSize = 6
 
-helloWorld()
 clear()
 
-while True:
-  goToPosition(0, 0)
+def farm():
+  initialX = get_pos_x()
+  initialY = get_pos_y()
 
-  gatherable_count = 0
-  for i in range(worldSize):
-    for y in range(worldSize):
-      if get_ground_type() != Grounds.Soil:
-        till()
+  while True:
+    goToPosition(initialX, initialY)
 
-      if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
-        plant(Entities.Pumpkin)
+    gatherable_count = 0
+    for i in range(farmSize):
+      for y in range(farmSize):
+        if get_ground_type() != Grounds.Soil:
+          till()
 
-      if can_harvest():
-        gatherable_count += 1
+        if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
+          plant(Entities.Pumpkin)
 
-      if get_water() < 0.2:
-        use_item(Items.Water)
+        if can_harvest():
+          gatherable_count += 1
 
-      if y != worldSize - 1:
-        if isEven(i):
-          move(North)
-        else:
-          move(South)
+        useWater(0.2)
 
-    if i != worldSize - 1:
-      move(East)
+        if y != farmSize - 1:
+          if isEven(i):
+            move(North)
+          else:
+            move(South)
 
-  if gatherable_count == worldSize * worldSize:
-    harvest()
+      if i != farmSize - 1:
+        move(East)
 
-  # Sunflowers
-  positions = [[6, 0], [6, 1], [6, 2]]
-  for i in range(len(positions)):
-    goToPosition(positions[i][0], positions[i][1])
-    if get_ground_type() != Grounds.Soil:
-      till()
-    if can_harvest():
+    if gatherable_count == farmSize ** 2:
       harvest()
-    if get_entity_type() == None or get_entity_type() != Entities.Sunflower:
-      plant(Entities.Sunflower)
-    if get_water() < 0.9:
-      use_item(Items.Water)
 
-      
+staringPositions = buildStartingPositions(7, 7)
+
+for i in range(len(staringPositions)):
+  if i == 0:
+    continue
+  goToPosition(staringPositions[i][0], staringPositions[i][1])
+  spawn_drone(farm)
+
+goToPosition(0, 0)
+farm()
