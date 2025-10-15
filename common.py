@@ -7,6 +7,8 @@ def isEven(x):
   return x % 2 == 0
 
 def goToPosition(x, y):
+  if get_pos_x() == x and get_pos_y() == y:
+    return
   moveX = x - get_pos_x()
   for _ in range(abs(moveX)):
     if moveX > 0:

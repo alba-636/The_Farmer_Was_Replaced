@@ -1,50 +1,36 @@
 from __builtins__ import *
 from common import *
 
-farmSize = 6
-
+helloWorld()
 clear()
 
-def farm():
-  initialX = get_pos_x()
-  initialY = get_pos_y()
+worldSize = get_world_size()
 
-  while True:
-    goToPosition(initialX, initialY)
+def custom_move(direction):
+  if move(direction) == False:
+    change_hat(Hats.Brown_Hat)
+    change_hat(Hats.Dinosaur_Hat)
 
-    gatherable_count = 0
-    for i in range(farmSize):
-      for y in range(farmSize):
-        if get_ground_type() != Grounds.Soil:
-          till()
+change_hat(Hats.Dinosaur_Hat)
 
-        if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
-          plant(Entities.Pumpkin)
+custom_move(North)
 
-        if can_harvest():
-          gatherable_count += 1
+square = worldSize - 1
 
-        useWater(0.2)
+while True:
+  for i in range(worldSize):
+    for y in range(square):
+  
+      if y != square - 1:
+        if isEven(i):
+          custom_move(North)
+        else:
+          custom_move(South)
 
-        if y != farmSize - 1:
-          if isEven(i):
-            move(North)
-          else:
-            move(South)
+    if i != worldSize - 1:
+      custom_move(East)
 
-      if i != farmSize - 1:
-        move(East)
-
-    if gatherable_count == farmSize ** 2:
-      harvest()
-
-staringPositions = buildStartingPositions(7, 7)
-
-for i in range(len(staringPositions)):
-  if i == 0:
-    continue
-  goToPosition(staringPositions[i][0], staringPositions[i][1])
-  spawn_drone(farm)
-
-goToPosition(0, 0)
-farm()
+  custom_move(South)
+  for i in range(worldSize - 1):
+    custom_move(West)
+  custom_move(North)
