@@ -1,3 +1,4 @@
+from builtins import type, bool, int, float, str, list
 
 def helloWorld():
     print("Hello, World!")
@@ -98,3 +99,12 @@ def useWater(min):
   if get_water() < min:
     use_item(Items.Water)
 
+def useFertilizer():
+  use_item(Items.Fertilizer)
+
+def rand(min, max):
+  return (random() * (max - min)) + min
+
+def sleep(seconds):
+  for _ in range(seconds):
+    do_a_flip()
