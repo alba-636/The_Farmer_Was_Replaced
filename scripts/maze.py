@@ -104,7 +104,7 @@ def drone():
     offsetY = 0
   maze(x + offsetX, y + offsetY, mazeSize, x, y)
 
-staringPositions = buildStartingPositions(mazeSize)
+staringPositions = buildStartingPositions(mazeSize, mazeSize)
 
 for i in range(len(staringPositions)):
   if i == 31:

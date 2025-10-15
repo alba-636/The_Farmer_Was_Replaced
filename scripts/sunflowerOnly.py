@@ -1,7 +1,7 @@
 from __builtins__ import *
 from common import *
 
-farmSize = 6
+farmSize = 5
 
 clear()
 
@@ -24,8 +24,7 @@ def farm(worldSize):
         if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
           plant(Entities.Sunflower)
 
-        if get_water() < 0.2:
-          use_item(Items.Water)
+        useWater(0.5)
 
         if y != worldSize - 1:
           if isEven(i):
@@ -39,29 +38,11 @@ def farm(worldSize):
 def drone():
   farm(farmSize)
 
-staringPositions = [
-  [6, 0],
-  [12, 0],
-  [18, 0],
-  [24, 0],
-
-  [0, 6],
-  [6, 6],
-  [12, 6],
-  [18, 6],
-  [24, 6],
-
-  [0, 12],
-  [6, 12],
-  [12, 12],
-  [18, 12],
-  [24, 12],
-
-  [0, 18],
-  [6, 18],
-]
+staringPositions = buildStartingPositions(farmSize, farmSize)
 
 for i in range(len(staringPositions)):
+  if i == 0:
+    continue
   goToPosition(staringPositions[i][0], staringPositions[i][1])
   spawn_drone(drone)
 

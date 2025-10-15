@@ -109,11 +109,10 @@ def sleep(seconds):
   for _ in range(seconds):
     do_a_flip()
 
-def buildStartingPositions(farmSize):
+def buildStartingPositions(length, height):
   positions = []
-  max = get_world_size() // farmSize
-  for y in range(max):
-    for x in range(max):
-      positions.append([x * farmSize, y * farmSize])
+  for y in range(get_world_size() // height):
+    for x in range(get_world_size() // length):
+      positions.append([x * length, y * height])
   return positions
 

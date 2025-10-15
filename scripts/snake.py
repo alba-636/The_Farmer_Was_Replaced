@@ -5,13 +5,8 @@ helloWorld()
 clear()
 
 worldSize = get_world_size()
-global tail_length
-tail_length = 0
 
 def custom_move(direction):
-  if get_entity_type() == Entities.Apple:
-    global tail_length
-    tail_length += 1
   if move(direction) == False:
     change_hat(Hats.Brown_Hat)
     change_hat(Hats.Dinosaur_Hat)
