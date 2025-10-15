@@ -1,14 +1,15 @@
 from __builtins__ import *
 from common import *
 
+helloWorld()
 clear()
 
-worldSize = 10
+worldSize = 32
 
 def plantCactusOfSize(size):
   if get_ground_type() != Grounds.Soil:
     till()
-  if measure() != size:
+  while measure() != size:
     harvest()
     plant(Entities.Cactus)
 
@@ -22,7 +23,7 @@ while True:
 
   for i in range(worldSize):
     for y in range(worldSize):
-      size = i + 10 - worldSize
+      size = 9
       plantCactusOfSize(size)
       if measure() != size:
         areAllSameSize = False
