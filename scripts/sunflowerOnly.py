@@ -25,7 +25,7 @@ while True:
       if y != worldSize - 1:
         if isEven(i):
           move(North)
-      else:
+        else:
           move(South)
 
     if i != worldSize - 1:
