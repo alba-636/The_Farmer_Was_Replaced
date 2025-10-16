@@ -97,9 +97,9 @@ def gatherAndPlant(plantType):
   elif plantType == Entities.Cactus:
     gatherPlantCactus()
 
-def useWater(min):
+def useWater(min, num = 1):
   if get_water() < min:
-    use_item(Items.Water)
+    use_item(Items.Water, num)
 
 def useFertilizer():
   use_item(Items.Fertilizer)
@@ -118,3 +118,5 @@ def buildStartingPositions(length, height):
       positions.append([x * length, y * height])
   return positions
 
+def hasItem(item):
+  return num_items(item) > 0
