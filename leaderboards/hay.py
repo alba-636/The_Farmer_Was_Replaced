@@ -1,8 +1,9 @@
 # From: Alba-636
 # Leaderboard: Hay
-# Best time: 02:15:013
-# Rank: #11
-# At: 2025-10-16
+# Best time: 01:58:727
+# Rank: #8
+# At: 2025-10-17
+
 from __builtins__ import *
 from common import *
 
@@ -15,15 +16,6 @@ def farm(initialX, initialY, index):
   farmSize = 4
   xMax = 3
   companionType = Entities.Bush
-  for x in range(farmSize):
-    for y in range(farmSize):
-      if isEven(x):
-        goToPosition(x + initialX, y + initialY)
-      else:
-        goToPosition(x + initialX, xMax - y + initialY)
-        
-      plant(companionType)
-
   if index == 26 or index == 27 or index == 28 or index == 29:
     offsetX = initialX + 3
     offsetY = initialY + 4
@@ -36,7 +28,17 @@ def farm(initialX, initialY, index):
           
         plant(companionType)
 
-    goToPosition(3 + initialX, initialY)
+  for x in range(farmSize):
+    for y in range(farmSize):
+      if isEven(x):
+        goToPosition(x + initialX, y + initialY)
+      else:
+        goToPosition(x + initialX, xMax - y + initialY)
+      
+      if not (x == 0 and y == 0) and not (x == 3 and y == 3):
+        plant(companionType)
+
+  isPosA = True
 
   while True:
     if hasSuccess():
@@ -45,13 +47,14 @@ def farm(initialX, initialY, index):
     plantType, (_, _) = get_companion()
     if can_harvest() or plantType != companionType:
       harvest()
-    elif index == 0 and plantType == companionType and num_items(Items.Fertilizer) > 0:
-      use_item(Items.Fertilizer, 1)
-      if num_items(Items.Weird_Substance) > 0:
-        use_item(Items.Weird_Substance, 1)
-      harvest()
-    else:
-      useWater(0.95, 1)
+    elif not can_harvest() and plantType == companionType:
+      useWater(0.8, 4)
+      if isPosA:
+        isPosA = False
+        move(East)
+      else:
+        isPosA = True
+        move(West)
 
 staringPositions = buildStartingPositions(4, 4)
 for i in range(len(staringPositions)):
