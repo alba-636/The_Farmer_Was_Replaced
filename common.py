@@ -142,3 +142,23 @@ def buildStartingPositions(length, height):
 
 def hasItem(item):
   return num_items(item) > 0
+
+def sum(arr):
+  s = 0
+  for i in range(len(arr)):
+    s += arr[i]
+  return s
+
+def maxOf(arr):
+  max = None
+  for i in range(len(arr)):
+    if max == None or arr[i] > max:
+      max = arr[i]
+  return max
+
+def minOf(arr):
+  min = None
+  for i in range(len(arr)):
+    if min == None or arr[i] < min:
+      min = arr[i]
+  return min
