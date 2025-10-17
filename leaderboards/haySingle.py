@@ -1,45 +1,69 @@
 # From: Alba-636
 # Leaderboard: Hay_Single
-# Best time: 02:57.235
+# Best time: 02:54.114
 # Rank: #11
 # At: 2025-10-17
 
-from __builtins__ import *
-from common import *
-
 set_world_size(5)
 
-def hasSuccess():
-  return num_items(Items.Hay) >= 100000000 # 100_000_000
-
-farmSize = 5
-xMax = farmSize - 1
-companionType = Entities.Bush
-for x in range(farmSize):
-  for y in range(farmSize):
-    if isEven(x):
-      goToPosition(x, y)
-    else:
-      goToPosition(x, xMax - y)
-      
-    if not (x == 0 and y == 4) and not (x == 4 and y == 4):
-      plant(companionType)
-
-isPosA = True
+move(North)
+plant(Entities.Bush)
+move(North)
+plant(Entities.Bush)
+move(North)
+plant(Entities.Bush)
+move(North)
+move(East)
+plant(Entities.Bush)
+move(East)
+plant(Entities.Bush)
+move(East)
+plant(Entities.Bush)
+move(East)
+plant(Entities.Bush)
+move(South)
+plant(Entities.Bush)
+move(South)
+plant(Entities.Bush)
+move(South)
+plant(Entities.Bush)
+move(South)
+plant(Entities.Bush)
+move(West)
+plant(Entities.Bush)
+move(West)
+plant(Entities.Bush)
+move(West)
+plant(Entities.Bush)
+move(North)
+plant(Entities.Bush)
+move(North)
+plant(Entities.Bush)
+move(North)
+plant(Entities.Bush)
+move(East)
+plant(Entities.Bush)
+move(East)
+plant(Entities.Bush)
+move(South)
+move(South)
+plant(Entities.Bush)
+move(West)
+plant(Entities.Bush)
+move(North)
 
 while True:
-  if hasSuccess():
-    break
-
   plantType, (_, _) = get_companion()
-  if can_harvest() or plantType != companionType:
+  if can_harvest():
     harvest()
-  elif not can_harvest() and plantType == companionType:
-    useWater(0.8, 4)
-    if isPosA:
-      isPosA = False
+    if num_items(Items.Hay) >= 100000000:
+      break
+  elif plantType != Entities.Bush:
+    harvest()
+  else:
+    if get_water() < 0.73:
+      use_item(Items.Water, 4)
+    if get_pos_x() == 2:
       move(East)
     else:
-      isPosA = True
       move(West)
-
