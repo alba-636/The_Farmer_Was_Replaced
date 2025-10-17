@@ -5,46 +5,14 @@ farmSize = 5
 
 clear()
 
-def farm(worldSize):
-  initialX = get_pos_x()
-  initialY = get_pos_y()
-
+def farm():
   while True:
-    # Go to starting position
-    goToPosition(initialX, initialY)
+    gatherPlantSunflower()
+    useWater(0.5, 4)
+    move(North)
 
-    for i in range(worldSize):
-      for y in range(worldSize):
-        if get_ground_type() != Grounds.Soil:
-          till()
+for _ in range(31):
+  spawn_drone(farm)
+  move(East)
 
-        if can_harvest():
-          harvest()
-
-        if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin:
-          plant(Entities.Sunflower)
-
-        useWater(0.5)
-
-        if y != worldSize - 1:
-          if isEven(i):
-            move(North)
-          else:
-            move(South)
-
-      if i != worldSize - 1:
-        move(East)
-
-def drone():
-  farm(farmSize)
-
-staringPositions = buildStartingPositions(farmSize, farmSize)
-
-for i in range(len(staringPositions)):
-  if i == 0:
-    continue
-  goToPosition(staringPositions[i][0], staringPositions[i][1])
-  spawn_drone(drone)
-
-goToPosition(0, 0)
-drone()
+farm()
