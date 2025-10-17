@@ -22,24 +22,16 @@ def goToPosition(x, y):
   moveXB = worldSize - moveXA
   moveYB = worldSize - moveYA
 
-  quick_print("moveXA:", moveXA)
-  quick_print("moveYA:", moveYA)
-
-  quick_print("moveXB:", moveXB)
-  quick_print("moveYB:", moveYB)
-
   # Use the fastest path
-  if abs(moveXA) + abs(moveYA) <= abs(moveXB) + abs(moveYB):
-    quick_print("Use A")
+  if abs(moveXA) <= abs(moveXB):
     moveX = moveXA
+  else:
+    moveX = moveXB * (moveXA / abs(moveXA)) * -1
+
+  if abs(moveYA) <= abs(moveYB):
     moveY = moveYA
   else:
-    quick_print("Use B")
-    moveX = moveXB * (moveXA / abs(moveXA))
-    moveY = moveYB * (moveYA / abs(moveYA))
-
-  quick_print("moveX:", moveX)
-  quick_print("moveY:", moveY)
+    moveY = moveYB * (moveYA / abs(moveYA)) * -1
 
   for _ in range(abs(moveX)):
     if moveX > 0:
