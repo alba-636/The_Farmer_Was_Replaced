@@ -9,14 +9,44 @@ def isEven(x):
 def goToPosition(x, y):
   if get_pos_x() == x and get_pos_y() == y:
     return
-  moveX = x - get_pos_x()
+  
+  moveX = 0
+  moveY = 0
+  worldSize = get_world_size()
+
+  # Compute the number of move todo to go to the position
+  moveXA = x - get_pos_x()
+  moveYA = y - get_pos_y()
+
+  # Compute the number of move todo to go to the position, using the edges
+  moveXB = worldSize - moveXA
+  moveYB = worldSize - moveYA
+
+  quick_print("moveXA:", moveXA)
+  quick_print("moveYA:", moveYA)
+
+  quick_print("moveXB:", moveXB)
+  quick_print("moveYB:", moveYB)
+
+  # Use the fastest path
+  if abs(moveXA) + abs(moveYA) <= abs(moveXB) + abs(moveYB):
+    quick_print("Use A")
+    moveX = moveXA
+    moveY = moveYA
+  else:
+    quick_print("Use B")
+    moveX = moveXB * (moveXA / abs(moveXA))
+    moveY = moveYB * (moveYA / abs(moveYA))
+
+  quick_print("moveX:", moveX)
+  quick_print("moveY:", moveY)
+
   for _ in range(abs(moveX)):
     if moveX > 0:
       move(East)
     else:
       move(West)
 
-  moveY = y - get_pos_y()
   for _ in range(abs(moveY)):
     if moveY > 0:
       move(North)
