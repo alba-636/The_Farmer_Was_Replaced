@@ -1,8 +1,11 @@
 # From: Alba-636
 # Leaderboard: Hay_Single
 # Best time: 02:54.114
-# Rank: #11
-# At: 2025-10-17
+# At: 2025-10-18
+
+# Avg: 2:55.57
+# Min: 2:48.96
+# Max: 3:3.98
 
 set_world_size(5)
 
@@ -61,7 +64,7 @@ while True:
   elif plantType != Entities.Bush:
     harvest()
   else:
-    if get_water() < 0.73:
+    if get_water() < 0.67:
       use_item(Items.Water, 4)
     if get_pos_x() == 2:
       move(East)
