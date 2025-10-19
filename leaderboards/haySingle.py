@@ -1,11 +1,11 @@
 # From: Alba-636
 # Leaderboard: Hay_Single
 # Best time: 02:54.114
-# At: 2025-10-18
+# At: 2025-10-19
 
-# Avg: 2:55.57
-# Min: 2:48.96
-# Max: 3:3.98
+# Avg: 2:55.21
+# Min: 2:46.04
+# Max: 3:6.54
 
 set_world_size(5)
 
@@ -15,12 +15,17 @@ move(North)
 plant(Entities.Bush)
 move(North)
 plant(Entities.Bush)
+move(East)
+plant(Entities.Bush)
 move(North)
-move(East)
 plant(Entities.Bush)
 move(East)
 plant(Entities.Bush)
+move(South)
+plant(Entities.Bush)
 move(East)
+plant(Entities.Bush)
+move(North)
 plant(Entities.Bush)
 move(East)
 plant(Entities.Bush)
@@ -34,26 +39,19 @@ move(South)
 plant(Entities.Bush)
 move(West)
 plant(Entities.Bush)
-move(West)
-plant(Entities.Bush)
-move(West)
-plant(Entities.Bush)
 move(North)
+plant(Entities.Bush)
+move(West)
+plant(Entities.Bush)
+move(South)
+plant(Entities.Bush)
+move(West)
 plant(Entities.Bush)
 move(North)
 plant(Entities.Bush)
 move(North)
 plant(Entities.Bush)
 move(East)
-plant(Entities.Bush)
-move(East)
-plant(Entities.Bush)
-move(South)
-move(South)
-plant(Entities.Bush)
-move(West)
-plant(Entities.Bush)
-move(North)
 
 while True:
   plantType, (_, _) = get_companion()
