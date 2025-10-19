@@ -162,3 +162,7 @@ def minOf(arr):
     if min == None or arr[i] < min:
       min = arr[i]
   return min
+
+def secondsToString(seconds):
+  return str(seconds // 60) + ":" + str(seconds % 60)
+
