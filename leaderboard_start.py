@@ -1,5 +1,4 @@
-# bar
 from __builtins__ import *
 from common import *
 
-leaderboard_run(Leaderboards.Hay, "leaderboard", 1000)
+leaderboard_run(Leaderboards.Wood_Single, "leaderboard", 999)

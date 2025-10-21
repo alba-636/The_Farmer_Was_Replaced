@@ -5,7 +5,7 @@ def stats(filename = "leaderboard", simGlobals = {}):
   simUnlocks = Unlocks
   simItems = { Items.Power: 1000000000 }
   seed = -1
-  speedup = 9999
+  speedup = 999
 
   times = []
 
@@ -18,13 +18,13 @@ def stats(filename = "leaderboard", simGlobals = {}):
   quick_print("Max:", secondsToString(maxOf(times)))
 
 
-# tests=[3, 4, 5, 6, 7, 8, 9, 10, 11]
-# for i in range(30):
-#   param = ((i) / 100)+0.1
+# tests = [32]
+# for i in range(10):
+#   param = i+8 # ((i+1) / 100)+0.6
 
 #   quick_print("Testing:", param)
 #   stats("main", { "param": param })
 #   quick_print("")
   
-# stats("farm")
+stats("main")
 
