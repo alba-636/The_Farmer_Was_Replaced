@@ -1,15 +1,15 @@
 from __builtins__ import *
 from common import *
 
-def stats(filename = "leaderboard", simGlobals = {}):
-  simUnlocks = Unlocks
-  simItems = { Items.Power: 1000000000 }
+def stats(filename, simGlobals = {}):
+  simUnlocks = {} # Unlocks
+  simItems = {} # { Items.Power: 1000000000 }
   seed = -1
-  speedup = 999
+  speedup = 1
 
   times = []
 
-  for _ in range(100):
+  for _ in range(1):
     time = simulate(filename, simUnlocks, simItems, simGlobals, seed, speedup)
     times.append(time)
 
@@ -26,5 +26,5 @@ def stats(filename = "leaderboard", simGlobals = {}):
 #   stats("main", { "param": param })
 #   quick_print("")
   
-stats("main")
+stats("fastest_reset")
 

@@ -1,11 +1,11 @@
 # From: Alba-636
 # Leaderboard: Hay_Single
-# Best time: 02:54.114
-# At: 2025-10-19
+# Best time: 02:55.374
+# At: 2026-01-03
 
-# Avg: 2:55.21
-# Min: 2:46.04
-# Max: 3:6.54
+# Avg: 2:56.69
+# Min: 2:48.24
+# Max: 3:5.5
 
 set_world_size(5)
 
@@ -54,7 +54,10 @@ plant(Entities.Bush)
 move(East)
 
 while True:
-  plantType, (_, _) = get_companion()
+  compagion = get_companion()
+  if compagion == None:
+    break
+  plantType, (_, _) = compagion
   if can_harvest():
     harvest()
     if num_items(Items.Hay) >= 100000000:

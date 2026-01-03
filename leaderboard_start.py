@@ -1,4 +1,4 @@
 from __builtins__ import *
 from common import *
 
-leaderboard_run(Leaderboards.Wood_Single, "leaderboard", 999)
+leaderboard_run(Leaderboards.Hay_Single, "leaderboard", 999)
