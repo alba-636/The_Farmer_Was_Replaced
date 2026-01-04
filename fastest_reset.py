@@ -8,6 +8,8 @@ upgrades_order = [
     { "upgrade": Unlocks.Expand, "num": 1 },
     { "upgrade": Unlocks.Plant, "num": 1 },
     { "upgrade": Unlocks.Speed, "num": 2 },
+    { "upgrade": Unlocks.Carrots, "num": 1 },
+    { "upgrade": Unlocks.Speed, "num": 3 },
 ]
 
 def try_unlock():
@@ -21,17 +23,36 @@ def try_unlock():
         upgrades_order.pop(0)
         return
 
-    needs = get_cost(upgrade)
-    if needs == None:
-        return
-    for item in needs:
-        if num_items(item) < needs[item]:
-            return (item, needs[item])
+    need = get_cost_of(upgrade)
+    if need != None:
+        return need
 
     result = unlock(upgrade)
     if result == True:
         upgrades_order.pop(0)
         quick_print("Unlocked", upgrade, num)
+
+def item_to_entitie(item):
+    map = {
+        Items.Carrot: Entities.Carrot,
+    }
+    if item not in map:
+        return item
+    return map[item]
+
+def get_cost_of(item, amount = 1):
+    denied_list = [None, Items.Hay, Items.Wood]
+    if item in denied_list:
+        return None
+
+    needs = get_cost(item_to_entitie(item))
+    if needs == None:
+        return None
+    for item in needs:
+        total_amount = needs[item] * amount
+        if num_items(item) < total_amount:
+            return (item, total_amount)
+    return None
 
 # Function to farm a specific resources.
 def farm_hay():
@@ -46,7 +67,10 @@ def farm_wood():
 
     if can_harvest():
         harvest()
-        plant(Entities.Tree)
+        plant(Entities.Bush)
+
+# def farm_carrots():
+#     if get_ground_type()
 
 need = None
 while True:
@@ -54,13 +78,19 @@ while True:
         break
 
     need = try_unlock()
-
     if need == None:
         continue
+    (item, amount) = need
+    # Some resources needs other resources to be planted.
+    need = get_cost_of(item, amount)
+    if need != None:
+        (item, amount) = need
 
-    if need[0] == Items.Hay:
+    if item == Items.Hay:
         farm_hay()
-    elif need[0] == Items.Wood:
+    elif item == Items.Wood:
         farm_wood()
+    else:
+        quick_print("Needed:", item, amount)
 
     
